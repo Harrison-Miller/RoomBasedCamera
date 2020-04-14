@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://grass.png" type="Texture" id=2]
+[ext_resource path="res://sand.png" type="Texture" id=3]
+[ext_resource path="res://dirt.png" type="Texture" id=4]
+[ext_resource path="res://road.png" type="Texture" id=5]
+[ext_resource path="res://rock2.png" type="Texture" id=6]
+[ext_resource path="res://rock1.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 288 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 512, 288 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1024, 576 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 256, 288 )
+
+[node name="Map" type="Node2D"]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PoolVector2Array( 74.0513, -0.078064, 1024.4, 0.931427, 3071.81, -2.01642, 3076.13, 1157.08, 1021.27, 1152.76, 1025.58, 1733.39, 514.028, 1729.08, 511.869, 1150.61, 0.311768, 1148.45, 0.311768, 0.14212, -57.9669, -68.9289, -55.8083, 1203.18, 464.383, 1203.18, 455.749, 1785.97, 1109.77, 1785.97, 1090.34, 1213.97, 3146.27, 1213.97, 3133.32, -74.6334, -43.9444, -78.9503, 18.276, -1.43845 )
+
+[node name="RoomOne" type="Sprite" parent="."]
+position = Vector2( 512, 288 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 576 )
+
+[node name="Area2D" type="Area2D" parent="RoomOne"]
+monitoring = false
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomOne/Area2D"]
+shape = SubResource( 1 )
+
+[node name="RoomTwo" type="Sprite" parent="."]
+position = Vector2( 512, 864 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 576 )
+
+[node name="Area2D2" type="Area2D" parent="RoomTwo"]
+monitoring = false
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomTwo/Area2D2"]
+shape = SubResource( 2 )
+
+[node name="RoomThree" type="Sprite" parent="."]
+position = Vector2( 2048, 576 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2048, 1152 )
+
+[node name="Area2D3" type="Area2D" parent="RoomThree"]
+monitoring = false
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomThree/Area2D3"]
+shape = SubResource( 3 )
+
+[node name="RoomFour" type="Sprite" parent="."]
+position = Vector2( 768, 1440 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 512, 576 )
+
+[node name="Area2D4" type="Area2D" parent="RoomFour"]
+monitoring = false
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomFour/Area2D4"]
+shape = SubResource( 4 )
+
+[node name="Obstacle" type="Node2D" parent="."]
+position = Vector2( 1949.72, 422 )
+
+[node name="Sprite" type="Sprite" parent="Obstacle"]
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="Obstacle"]
+position = Vector2( 67.5356, 49.9176 )
+rotation = -0.783795
+texture = ExtResource( 6 )
+
+[node name="Sprite3" type="Sprite" parent="Obstacle"]
+position = Vector2( 5.87256, 91.0261 )
+rotation = -2.47877
+texture = ExtResource( 7 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Obstacle"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacle/StaticBody2D"]
+polygon = PoolVector2Array( 78.8794, 0.635834, 102.37, 47.617, 20.1528, 121.025, -53.2552, 85.7893, -15.083, -34.6001 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
